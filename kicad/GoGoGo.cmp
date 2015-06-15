@@ -1,0 +1,59 @@
+Cmp-Mod V01 Created by Cvpcb (2015-05-26 BZR 5680)-product   date = 2015 June 15, Monday 21:33:40
+
+BeginCmp
+TimeStamp = /557F258E;
+Reference = C1;
+ValeurCmp = 1u;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /557F25B1;
+Reference = C2;
+ValeurCmp = 10u;
+IdModule  = Capacitors_SMD:C_1206;
+EndCmp
+
+BeginCmp
+TimeStamp = /557F25CA;
+Reference = C3;
+ValeurCmp = 1u;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /557F25F4;
+Reference = C4;
+ValeurCmp = 10u;
+IdModule  = Capacitors_SMD:C_1206;
+EndCmp
+
+BeginCmp
+TimeStamp = /557F28EB;
+Reference = P1;
+ValeurCmp = Vcc;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x02;
+EndCmp
+
+BeginCmp
+TimeStamp = /557F2B6D;
+Reference = P2;
+ValeurCmp = Input;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x04;
+EndCmp
+
+BeginCmp
+TimeStamp = /557F29DF;
+Reference = P3;
+ValeurCmp = Output;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x02;
+EndCmp
+
+BeginCmp
+TimeStamp = /557F2557;
+Reference = U1;
+ValeurCmp = TB6593FNG;
+IdModule  = SMD_Packages:SSOP-20;
+EndCmp
+
+EndListe
