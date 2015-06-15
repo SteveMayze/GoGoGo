@@ -1,0 +1,8 @@
+**/**/*.bak
+*.bak
+*.bck
+*-cache.lib
+*.kicad_pcb-bak
+.DS_Store
+*.swp
+*.zip
