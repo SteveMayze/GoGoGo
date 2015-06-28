@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name Gogogo-Footprint)(type KiCad)(uri ${KIPRJMOD}/lib/Gogogo-footprints.pretty)(options "")(descr ""))
+)
