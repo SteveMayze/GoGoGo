@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="drawing.svg"
+   inkscape:export-filename="/home/steve/pcbs/GoGoGo/MotorEncoderDisk/image/encoderWheel.png"
+   inkscape:export-xdpi="300.38055"
+   inkscape:export-ydpi="300.38055">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6"
+     inkscape:cx="183.82671"
+     inkscape:cy="631.55676"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1855"
+     inkscape:window-height="1176"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 211.65625 361.71875 C 203.13545 362.65737 195.35193 366.0394 189 371.125 L 201.8125 383.9375 C 203.12523 385.25023 203.12523 387.34352 201.8125 388.65625 L 199.625 390.84375 C 198.31227 392.15648 196.21898 392.15648 194.90625 390.84375 L 182.09375 378.03125 C 177.01152 384.38484 173.64392 392.16351 172.71875 400.6875 L 190.8125 400.6875 C 192.66898 400.6875 194.1875 402.17477 194.1875 404.03125 L 194.1875 407.09375 C 194.1875 408.95023 192.66898 410.4375 190.8125 410.4375 L 172.75 410.4375 C 173.69982 418.94046 177.06969 426.69478 182.15625 433.03125 L 194.90625 420.28125 C 196.21898 418.96852 198.31227 418.96852 199.625 420.28125 L 201.8125 422.4375 C 203.12523 423.75023 203.12523 425.87477 201.8125 427.1875 L 189.0625 439.9375 C 195.39989 444.99301 203.16727 448.34565 211.65625 449.28125 L 211.65625 431.25 C 211.65625 429.39352 213.14352 427.90625 215 427.90625 L 218.0625 427.90625 C 219.91898 427.90625 221.40625 429.39352 221.40625 431.25 L 221.40625 449.28125 C 229.89623 448.34265 237.6645 444.99904 244 439.9375 L 231.25 427.1875 C 229.93727 425.87477 229.93727 423.75023 231.25 422.4375 L 233.40625 420.28125 C 234.71898 418.96852 236.84352 418.96852 238.15625 420.28125 L 250.90625 433.03125 C 255.98104 426.69694 259.36417 418.93275 260.3125 410.4375 L 242.21875 410.4375 C 240.36227 410.4375 238.875 408.95023 238.875 407.09375 L 238.875 404.03125 C 238.875 402.17477 240.36227 400.6875 242.21875 400.6875 L 260.3125 400.6875 C 259.3841 392.17193 256.04579 384.38179 250.96875 378.03125 L 238.15625 390.84375 C 236.84352 392.15648 234.71898 392.15648 233.40625 390.84375 L 231.25 388.65625 C 229.93727 387.34352 229.93727 385.25023 231.25 383.9375 L 244.0625 371.125 C 237.71265 366.03895 229.92657 362.65731 221.40625 361.71875 L 221.40625 379.84375 C 221.40625 381.70023 219.91898 383.21875 218.0625 383.21875 L 215 383.21875 C 213.14352 383.21875 211.65625 381.70023 211.65625 379.84375 L 211.65625 361.71875 z M 213.71875 396.03125 L 219.34375 396.03125 C 221.32232 396.03125 222.90625 397.61518 222.90625 399.59375 L 222.90625 411.40625 C 222.90625 413.38482 221.32232 415 219.34375 415 L 213.71875 415 C 211.74018 415 210.15625 413.38482 210.15625 411.40625 L 210.15625 399.59375 C 210.15625 397.61518 211.74018 396.03125 213.71875 396.03125 z "
+       id="path2987"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+  </g>
+</svg>

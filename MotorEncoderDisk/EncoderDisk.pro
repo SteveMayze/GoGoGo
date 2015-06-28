@@ -1,4 +1,4 @@
-update=Sun 28 Jun 2015 18:22:37 CEST
+update=Sun 28 Jun 2015 20:15:58 CEST
 version=1
 last_client=kicad
 [pcbnew]
@@ -25,7 +25,7 @@ version=1
 NetIExt=net
 [eeschema]
 version=1
-LibDir=../lib
+LibDir=
 [eeschema/libraries]
 LibName1=power
 LibName2=device
@@ -56,16 +56,5 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
-LibName30=/home/steve/pcbs/GoGoGo/lib/Gogogo-Symbols
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=Pcbnew
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-LabSize=60
 [general]
 version=1
