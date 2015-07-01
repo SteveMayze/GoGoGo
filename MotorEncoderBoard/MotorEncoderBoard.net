@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/steve/pcbs/GoGoGo/MotorEncoderBoard/MotorEncoderBoard.sch)
-    (date "Sun 28 Jun 2015 16:27:09 CEST")
+    (date "Tue 30 Jun 2015 20:24:23 CEST")
     (tool "Eeschema 0.201506222247+5806~23~ubuntu14.04.1-product")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -18,6 +18,8 @@
     (comp (ref U1)
       (value RPI-579N1)
       (footprint Gogogo-Footprint:RPI-579N1)
+      (fields
+        (field (name MPN) RPI-579N1))
       (libsource (lib Gogogo-Symbols) (part RPI-579N1))
       (sheetpath (names /) (tstamps /))
       (tstamp 558FF4A8))
@@ -34,8 +36,11 @@
       (sheetpath (names /) (tstamps /))
       (tstamp 558FF5EA))
     (comp (ref U2)
-      (value LM311N)
+      (value LM311D)
       (footprint Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm)
+      (fields
+        (field (name MPN) LM311DR)
+        (field (name Conrad_PN) "1072988 - 62"))
       (libsource (lib linear) (part LM311N))
       (sheetpath (names /) (tstamps /))
       (tstamp 558FF69C))
@@ -84,20 +89,6 @@
       (sheetpath (names /) (tstamps /))
       (tstamp 5590040D)))
   (libparts
-    (libpart (lib Gogogo-Symbols) (part RPI-579N1)
-      (description "LTV-817, DIP-4, DC Optocoupler, Vce 35V, CTR 50%")
-      (docs http://www.us.liteon.com/downloads/LTV-817-827-847.PDF)
-      (footprints
-        (fp DIP-4*))
-      (fields
-        (field (name Reference) U)
-        (field (name Value) RPI-579N1)
-        (field (name Footprint) DIP-4))
-      (pins
-        (pin (num 1) (name ~) (type passive))
-        (pin (num 2) (name ~) (type passive))
-        (pin (num 3) (name ~) (type passive))
-        (pin (num 4) (name ~) (type passive))))
     (libpart (lib linear) (part LM311N)
       (description "Voltage Comparator")
       (fields
@@ -112,6 +103,20 @@
         (pin (num 6) (name B/S) (type passive))
         (pin (num 7) (name ~) (type output))
         (pin (num 8) (name V+) (type input))))
+    (libpart (lib Gogogo-Symbols) (part RPI-579N1)
+      (description "LTV-817, DIP-4, DC Optocoupler, Vce 35V, CTR 50%")
+      (docs http://www.us.liteon.com/downloads/LTV-817-827-847.PDF)
+      (footprints
+        (fp DIP-4*))
+      (fields
+        (field (name Reference) U)
+        (field (name Value) RPI-579N1)
+        (field (name Footprint) DIP-4))
+      (pins
+        (pin (num 1) (name ~) (type passive))
+        (pin (num 2) (name ~) (type passive))
+        (pin (num 3) (name ~) (type passive))
+        (pin (num 4) (name ~) (type passive))))
     (libpart (lib conn) (part CONN_01X01)
       (footprints
         (fp Pin_Header_Straight_1X01)
@@ -135,6 +140,17 @@
       (pins
         (pin (num 1) (name P1) (type passive))
         (pin (num 2) (name P2) (type passive))))
+    (libpart (lib device) (part R)
+      (description Resistor)
+      (footprints
+        (fp R_*)
+        (fp Resistor_*))
+      (fields
+        (field (name Reference) R)
+        (field (name Value) R))
+      (pins
+        (pin (num 1) (name ~) (type passive))
+        (pin (num 2) (name ~) (type passive))))
     (libpart (lib device) (part C)
       (description "Unpolarized capacitor")
       (footprints
@@ -148,23 +164,12 @@
         (field (name Value) C))
       (pins
         (pin (num 1) (name ~) (type passive))
-        (pin (num 2) (name ~) (type passive))))
-    (libpart (lib device) (part R)
-      (description Resistor)
-      (footprints
-        (fp R_*)
-        (fp Resistor_*))
-      (fields
-        (field (name Reference) R)
-        (field (name Value) R))
-      (pins
-        (pin (num 1) (name ~) (type passive))
         (pin (num 2) (name ~) (type passive)))))
   (libraries
-    (library (logical device)
-      (uri /usr/share/kicad/library/device.lib))
     (library (logical Gogogo-Symbols)
       (uri /home/steve/pcbs/GoGoGo/lib/Gogogo-Symbols.lib))
+    (library (logical device)
+      (uri /usr/share/kicad/library/device.lib))
     (library (logical linear)
       (uri /usr/share/kicad/library/linear.lib))
     (library (logical conn)
