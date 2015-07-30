@@ -1,0 +1,9 @@
+Reference, Quantity, Value, Footprint, Datasheet, MPN, Conrad_PN
+C1 ,1,C,Capacitors_SMD:C_0805_HandSoldering,
+P1 ,1,PWR,Pin_Headers:Pin_Header_Straight_1x02,
+P2 ,1,Out,Pin_Headers:Pin_Header_Straight_1x02,
+R1 R2 R4 R5 ,4,1K,Resistors_SMD:R_0805_HandSoldering,
+R3 ,1,100,Resistors_SMD:R_0805_HandSoldering,
+TP1 ,1,OptoOut,Measurement_Points:Measurement_Point_Round-SMD-Pad_Big,,"Value",
+U1 ,1,RPI-579N1,Gogogo-Footprint:RPI-579N1,,"RPI-579N1",
+U2 ,1,LM311D,Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm,,"LM311DR","1072988 - 62"

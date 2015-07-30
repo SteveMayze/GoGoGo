@@ -1,0 +1,7 @@
+Reference, Quantity, Value, Footprint, Datasheet
+C1 C3 ,2,1u,Capacitors_SMD:C_0805,
+C2 C4 ,2,10u,Capacitors_SMD:C_1206,
+P1 ,1,Vcc,Pin_Headers:Pin_Header_Straight_1x02,
+P2 ,1,Input,Pin_Headers:Pin_Header_Straight_1x04,
+P3 ,1,Output,Pin_Headers:Pin_Header_Straight_1x02,
+U1 ,1,TB6593FNG,SMD_Packages:SSOP-20,

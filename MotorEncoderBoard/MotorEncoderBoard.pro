@@ -1,4 +1,4 @@
-update=Sun 28 Jun 2015 18:22:37 CEST
+update=Thu 30 Jul 2015 19:14:13 CEST
 version=1
 last_client=kicad
 [pcbnew]
@@ -57,6 +57,8 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=/home/steve/pcbs/GoGoGo/lib/Gogogo-Symbols
+[general]
+version=1
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
@@ -67,5 +69,3 @@ NetFmtName=Pcbnew
 SpiceForceRefPrefix=0
 SpiceUseNetNumbers=0
 LabSize=60
-[general]
-version=1
