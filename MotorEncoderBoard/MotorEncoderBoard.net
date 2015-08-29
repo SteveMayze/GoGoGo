@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/steve/pcbs/GoGoGo/MotorEncoderBoard/MotorEncoderBoard.sch)
-    (date "Sat 01 Aug 2015 14:28:24 CEST")
+    (date "Sat 29 Aug 2015 16:03:18 CEST")
     (tool "Eeschema no-vcs-found-product")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -16,7 +16,7 @@
         (comment (number 4) (value "")))))
   (components
     (comp (ref R2)
-      (value 1K)
+      (value 10K)
       (footprint Resistors_SMD:R_0805_HandSoldering)
       (libsource (lib device) (part R))
       (sheetpath (names /) (tstamps /))
@@ -68,7 +68,7 @@
       (tstamp 558FFB0D))
     (comp (ref TP1)
       (value OptoOut)
-      (footprint Measurement_Points:Measurement_Point_Round-SMD-Pad_Big)
+      (footprint Pin_Headers:Pin_Header_Straight_1x01)
       (fields
         (field (name MPN) Value))
       (libsource (lib conn) (part CONN_01X01))
@@ -82,39 +82,11 @@
       (tstamp 5590040D))
     (comp (ref U1)
       (value RPI-579N1)
-      (footprint DIP-4)
+      (footprint Gogogo-footprints:RPI-579N1)
       (libsource (lib Gogogo-Symbols) (part RPI-579N1))
       (sheetpath (names /) (tstamps /))
       (tstamp 55BCBC09)))
   (libparts
-    (libpart (lib Gogogo-Symbols) (part RPI-579N1)
-      (description "LTV-817, DIP-4, DC Optocoupler, Vce 35V, CTR 50%")
-      (docs http://www.us.liteon.com/downloads/LTV-817-827-847.PDF)
-      (footprints
-        (fp DIP-4*))
-      (fields
-        (field (name Reference) U)
-        (field (name Value) RPI-579N1)
-        (field (name Footprint) DIP-4))
-      (pins
-        (pin (num 1) (name ~) (type passive))
-        (pin (num 2) (name ~) (type passive))
-        (pin (num 3) (name ~) (type passive))
-        (pin (num 4) (name ~) (type passive))))
-    (libpart (lib linear) (part LM311N)
-      (description "Voltage Comparator")
-      (fields
-        (field (name Reference) U)
-        (field (name Value) LM311N))
-      (pins
-        (pin (num 1) (name GND) (type input))
-        (pin (num 2) (name +) (type input))
-        (pin (num 3) (name -) (type input))
-        (pin (num 4) (name V-) (type input))
-        (pin (num 5) (name BAL) (type passive))
-        (pin (num 6) (name B/S) (type passive))
-        (pin (num 7) (name ~) (type output))
-        (pin (num 8) (name V+) (type input))))
     (libpart (lib device) (part C)
       (description "Unpolarized capacitor")
       (footprints
@@ -126,6 +98,17 @@
       (fields
         (field (name Reference) C)
         (field (name Value) C))
+      (pins
+        (pin (num 1) (name ~) (type passive))
+        (pin (num 2) (name ~) (type passive))))
+    (libpart (lib device) (part R)
+      (description Resistor)
+      (footprints
+        (fp R_*)
+        (fp Resistor_*))
+      (fields
+        (field (name Reference) R)
+        (field (name Value) R))
       (pins
         (pin (num 1) (name ~) (type passive))
         (pin (num 2) (name ~) (type passive))))
@@ -152,26 +135,43 @@
       (pins
         (pin (num 1) (name P1) (type passive))
         (pin (num 2) (name P2) (type passive))))
-    (libpart (lib device) (part R)
-      (description Resistor)
-      (footprints
-        (fp R_*)
-        (fp Resistor_*))
+    (libpart (lib linear) (part LM311N)
+      (description "Voltage Comparator")
       (fields
-        (field (name Reference) R)
-        (field (name Value) R))
+        (field (name Reference) U)
+        (field (name Value) LM311N))
+      (pins
+        (pin (num 1) (name GND) (type input))
+        (pin (num 2) (name +) (type input))
+        (pin (num 3) (name -) (type input))
+        (pin (num 4) (name V-) (type input))
+        (pin (num 5) (name BAL) (type passive))
+        (pin (num 6) (name B/S) (type passive))
+        (pin (num 7) (name ~) (type output))
+        (pin (num 8) (name V+) (type input))))
+    (libpart (lib Gogogo-Symbols) (part RPI-579N1)
+      (description "LTV-817, DIP-4, DC Optocoupler, Vce 35V, CTR 50%")
+      (docs http://www.us.liteon.com/downloads/LTV-817-827-847.PDF)
+      (footprints
+        (fp DIP-4*))
+      (fields
+        (field (name Reference) U)
+        (field (name Value) RPI-579N1)
+        (field (name Footprint) DIP-4))
       (pins
         (pin (num 1) (name ~) (type passive))
-        (pin (num 2) (name ~) (type passive)))))
+        (pin (num 2) (name ~) (type passive))
+        (pin (num 3) (name ~) (type passive))
+        (pin (num 4) (name ~) (type passive)))))
   (libraries
-    (library (logical Gogogo-Symbols)
-      (uri /home/steve/pcbs/GoGoGo/lib/Gogogo-Symbols.lib))
+    (library (logical device)
+      (uri /usr/share/kicad/library/device.lib))
     (library (logical conn)
       (uri /usr/share/kicad/library/conn.lib))
     (library (logical linear)
       (uri /usr/share/kicad/library/linear.lib))
-    (library (logical device)
-      (uri /usr/share/kicad/library/device.lib)))
+    (library (logical Gogogo-Symbols)
+      (uri /home/steve/pcbs/GoGoGo/lib/Gogogo-Symbols.lib)))
   (nets
     (net (code 1) (name GND)
       (node (ref U1) (pin 4))
