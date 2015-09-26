@@ -6,3 +6,10 @@
 .DS_Store
 *.swp
 *.zip
+*.bin
+*.BM
+*.dbg
+*.hex
+*.obj
+*.rpt
+*.SIM
