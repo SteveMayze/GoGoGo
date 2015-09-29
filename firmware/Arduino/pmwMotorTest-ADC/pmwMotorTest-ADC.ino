@@ -1,3 +1,7 @@
+
+#include <PinChangeInt.h>
+#include <PinChangeIntConfig.h>
+
 int lpwmPin = 11;
 int lstbyPin = 0;
 int linp1 = 1;
