@@ -1,14 +1,14 @@
 (kicad_pcb (version 4) (host pcbnew 0.201508140901+6091~28~ubuntu14.04.1-product)
 
   (general
-    (links 201)
+    (links 199)
     (no_connects 0)
     (area 137.108028 72.9361 176.423401 106.08056)
     (thickness 1.6)
     (drawings 11)
     (tracks 116)
     (zones 0)
-    (modules 179)
+    (modules 177)
     (nets 15)
   )
 
@@ -362,30 +362,6 @@
   (module GoGoGo:Via (layer F.Cu) (tedit 5612E31A) (tstamp 5612EA25)
     (at 154.686 88.9)
     (fp_text reference REF**118 (at 0 -1.27) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value Via (at 0 1.27) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole circle (at 0 0) (size 0.6858 0.6858) (drill 0.3302) (layers *.Cu *.Mask F.SilkS)
-      (net 1 GND) (zone_connect 2))
-  )
-
-  (module GoGoGo:Via (layer F.Cu) (tedit 5612E31A) (tstamp 5612EA11)
-    (at 155.194 94.996)
-    (fp_text reference REF**111111101 (at 0 -1.27) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value Via (at 0 1.27) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole circle (at 0 0) (size 0.6858 0.6858) (drill 0.3302) (layers *.Cu *.Mask F.SilkS)
-      (net 1 GND) (zone_connect 2))
-  )
-
-  (module GoGoGo:Via (layer F.Cu) (tedit 5612E31A) (tstamp 5612EA0D)
-    (at 153.924 94.996)
-    (fp_text reference REF**11111191 (at 0 -1.27) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value Via (at 0 1.27) (layer F.Fab) hide
