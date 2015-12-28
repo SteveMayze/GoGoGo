@@ -33,7 +33,7 @@ bool leftRunning = false;
 bool rightRunning=false;
 
 int potPin = 2;
-int speed = 0;
+int speed = 60;
 
 void isr_leftTick();
 void isr_rightTick();
@@ -93,6 +93,7 @@ void rightFwd(int speed, int ticks) {
     Serial.println(msg);
     digitalWrite(rinp1, LOW);
     digitalWrite(rinp2, HIGH);
+    digitalWrite(rstbyPin, HIGH);
     analogWrite(rpwmPin, speed);
     // digitalWrite(rstbyPin, HIGH);
     rightRunning = true;
@@ -106,7 +107,7 @@ void rightRev(int speed, int ticks) {
   Serial.println(msg);
   digitalWrite(rinp1, HIGH);
   digitalWrite(rinp2, LOW);
-  // digitalWrite(rstbyPin, HIGH);
+  digitalWrite(rstbyPin, HIGH);
   analogWrite(rpwmPin, speed);
   rightRunning = true;
   stopRight = false;
@@ -121,7 +122,7 @@ void leftFwd(int speed, int ticks){
     Serial.println(msg);
     digitalWrite(linp1, LOW);
     digitalWrite(linp2, HIGH);
-    // digitalWrite(lstbyPin, HIGH);
+    digitalWrite(lstbyPin, HIGH);
     analogWrite(lpwmPin, speed);
     leftRunning = true;
     stopLeft = false;
@@ -134,15 +135,12 @@ void leftRev(int speed, int ticks){
   Serial.println(msg);
   digitalWrite(linp1, HIGH);
   digitalWrite(linp2, LOW);
-  // digitalWrite(lstbyPin, HIGH);
+  digitalWrite(lstbyPin, HIGH);
   analogWrite(lpwmPin, speed);
   leftRunning = true;
   stopLeft=false;
   
 }
-
-
-
 
 
 void allStop() {
@@ -160,9 +158,9 @@ void allStop() {
 
 void leftStop() {
   Serial.println("LEFT STOP!");
-  // digitalWrite(linp1, LOW);
-  // digitalWrite(linp2, LOW);
-  digitalWrite(lstbyPin, LOW);
+  digitalWrite(linp1, LOW);
+  digitalWrite(linp2, LOW);
+  digitalWrite(lstbyPin, HIGH);
   lTickLimit = 0;
   leftTick = 1;
   leftRunning = false;
@@ -170,9 +168,9 @@ void leftStop() {
 
 void rightStop() {
   Serial.println("RIGHT STOP!");
-  // digitalWrite(rinp1, LOW);
-  // digitalWrite(rinp2, LOW);
-  digitalWrite(rstbyPin, LOW);
+  digitalWrite(rinp1, LOW);
+  digitalWrite(rinp2, LOW);
+  digitalWrite(rstbyPin, HIGH);
   rTickLimit = 0;
   rightTick = 1;
   rightRunning = false;
@@ -228,10 +226,23 @@ void loop() {
            break;
         case 's':
            speed = param;
-           msg = msg + "Speed " + param + " units";
            Serial.println(msg);
-           analogWrite(lpwmPin, speed);
-           analogWrite(rpwmPin, speed);
+           switch(cmd[1]) {
+            case 'l':
+              analogWrite(lpwmPin, speed);
+              msg = msg + "LEFT Speed " + param + " units";
+               break;
+            case 'r':
+              analogWrite(rpwmPin, speed);
+              msg = msg + "RIGHT Speed " + param + " units";
+               break;
+            default:
+              analogWrite(lpwmPin, speed);
+              analogWrite(rpwmPin, speed);
+              msg = msg + "Speed " + param + " units";
+            break;              
+           }
+           Serial.println(msg);
            break;
         case 'q':
            msg = msg + "DUMP\n=======================" + 
