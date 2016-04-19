@@ -66,7 +66,7 @@ Wire Wire Line
 Wire Wire Line
 	4150 2700 4150 2950
 Wire Wire Line
-	3900 2950 4850 2950
+	3900 2950 5050 2950
 $Comp
 L VCC #PWR01
 U 1 1 558FF5C5
@@ -114,7 +114,7 @@ Wire Wire Line
 Wire Wire Line
 	4150 3150 4150 4400
 Wire Wire Line
-	3000 4400 5350 4400
+	5350 4400 3000 4400
 Connection ~ 3000 4400
 $Comp
 L LM311N U2
@@ -131,7 +131,7 @@ F 5 "1072988 - 62" H 5350 3050 60  0001 C CNN "Conrad_PN"
 $EndComp
 Connection ~ 4150 2950
 Wire Wire Line
-	5250 2250 5250 2650
+	5250 2250 5250 2750
 Connection ~ 4150 2250
 $Comp
 L R R1
@@ -148,7 +148,7 @@ Wire Wire Line
 	6550 2250 6550 2350
 Connection ~ 5250 2250
 Wire Wire Line
-	5850 3050 7050 3050
+	5650 3050 7050 3050
 Wire Wire Line
 	6550 3050 6550 2650
 $Comp
@@ -180,7 +180,7 @@ Wire Wire Line
 Wire Wire Line
 	4750 3150 4750 3800
 Wire Wire Line
-	4750 3150 4850 3150
+	4750 3150 5050 3150
 Connection ~ 4500 3800
 $Comp
 L VCC #PWR03
@@ -199,19 +199,19 @@ Wire Wire Line
 	4500 4400 4500 4200
 Connection ~ 4150 4400
 Wire Wire Line
-	5350 4400 5350 3450
+	5350 3350 5350 4400
 Connection ~ 4500 4400
 Wire Wire Line
-	5250 3450 5250 4400
+	5250 3350 5250 4400
 Connection ~ 5250 4400
 Wire Wire Line
-	5450 3450 5450 3600
+	5450 3350 5450 3600
 Wire Wire Line
 	5450 3600 6050 3600
 Wire Wire Line
 	6050 3600 6050 3150
 Wire Wire Line
-	6050 3150 5850 3150
+	6050 3150 5650 3150
 $Comp
 L CONN_01X02 P2
 U 1 1 558FFA04
