@@ -1,0 +1,63 @@
+FORWARD ... speed=60, ticks=200
+LEFT Forward ... speed=60, ticks=200
+RIGHT Forward ... speed=60, ticks=200
+RUNNING leftRunning=1, leftTick=0 lTickLimit=200 rightRunning=1, rightTick=0 rTickLimit=200
+RUNNING leftRunning=1, leftTick=4 lTickLimit=200 rightRunning=1, rightTick=11 rTickLimit=200
+RUNNING leftRunning=1, leftTick=6 lTickLimit=200 rightRunning=1, rightTick=20 rTickLimit=200
+RUNNING leftRunning=1, leftTick=7 lTickLimit=200 rightRunning=1, rightTick=27 rTickLimit=200
+RUNNING leftRunning=1, leftTick=12 lTickLimit=200 rightRunning=1, rightTick=31 rTickLimit=200
+RUNNING leftRunning=1, leftTick=15 lTickLimit=200 rightRunning=1, rightTick=40 rTickLimit=200
+RUNNING leftRunning=1, leftTick=19 lTickLimit=200 rightRunning=1, rightTick=45 rTickLimit=200
+RUNNING leftRunning=1, leftTick=20 lTickLimit=200 rightRunning=1, rightTick=55 rTickLimit=200
+RUNNING leftRunning=1, leftTick=23 lTickLimit=200 rightRunning=1, rightTick=61 rTickLimit=200
+RUNNING leftRunning=1, leftTick=30 lTickLimit=200 rightRunning=1, rightTick=75 rTickLimit=200
+RUNNING leftRunning=1, leftTick=31 lTickLimit=200 rightRunning=1, rightTick=90 rTickLimit=200
+RUNNING leftRunning=1, leftTick=33 lTickLimit=200 rightRunning=1, rightTick=99 rTickLimit=200
+RUNNING leftRunning=1, leftTick=43 lTickLimit=200 rightRunning=1, rightTick=113 rTickLimit=200
+RUNNING leftRunning=1, leftTick=49 lTickLimit=200 rightRunning=1, rightTick=121 rTickLimit=200
+RUNNING leftRunning=1, leftTick=55 lTickLimit=200 rightRunning=1, rightTick=123 rTickLimit=200
+RUNNING leftRunning=1, leftTick=56 lTickLimit=200 rightRunning=1, rightTick=127 rTickLimit=200
+RUNNING leftRunning=1, leftTick=61 lTickLimit=200 rightRunning=1, rightTick=142 rTickLimit=200
+RUNNING leftRunning=1, leftTick=66 lTickLimit=200 rightRunning=1, rightTick=147 rTickLimit=200
+RUNNING leftRunning=1, leftTick=68 lTickLimit=200 rightRunning=1, rightTick=156 rTickLimit=200
+RUNNING leftRunning=1, leftTick=73 lTickLimit=200 rightRunning=1, rightTick=166 rTickLimit=200
+RUNNING leftRunning=1, leftTick=76 lTickLimit=200 rightRunning=1, rightTick=178 rTickLimit=200
+RUNNING leftRunning=1, leftTick=77 lTickLimit=200 rightRunning=1, rightTick=181 rTickLimit=200
+RUNNING leftRunning=1, leftTick=81 lTickLimit=200 rightRunning=1, rightTick=188 rTickLimit=200
+RUNNING leftRunning=1, leftTick=83 lTickLimit=200 rightRunning=1, rightTick=195 rTickLimit=200
+RIGHT STOP!
+RUNNING leftRunning=1, leftTick=86 lTickLimit=200 rightRunning=0, rightTick=1 rTickLimit=0
+RUNNING leftRunning=1, leftTick=90 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=91 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=93 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=97 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=103 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=106 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=111 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=114 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=116 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=120 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=122 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=126 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=128 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=131 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=134 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=137 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=142 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=144 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=149 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=155 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=161 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=162 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=168 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=171 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=174 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=180 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=182 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=188 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=191 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=193 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=196 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=197 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+RUNNING leftRunning=1, leftTick=200 lTickLimit=200 rightRunning=0, rightTick=8 rTickLimit=0
+LEFT STOP!

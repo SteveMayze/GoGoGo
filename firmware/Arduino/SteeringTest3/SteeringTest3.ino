@@ -61,7 +61,7 @@ void setup() {
   pinMode(lwheel, OUTPUT);
   pinMode(rwheel, OUTPUT);
   attachInterrupt(digitalPinToInterrupt(lwheel), isr_leftTick, FALLING);
-  attachInterrupt(digitalPinToInterrupt(rwheel), isr_rightTick, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(rwheel), isr_rightTick, FALLING);
   leftRunning = false;
   rightRunning  = false;
 }
