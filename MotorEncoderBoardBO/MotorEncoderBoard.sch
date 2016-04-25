@@ -110,10 +110,6 @@ $EndComp
 Wire Wire Line
 	3000 3700 3000 4550
 Wire Wire Line
-	3900 3150 4150 3150
-Wire Wire Line
-	4150 3150 4150 4400
-Wire Wire Line
 	5350 4400 3000 4400
 Connection ~ 3000 4400
 $Comp
@@ -197,7 +193,6 @@ Wire Wire Line
 	4500 3300 4500 3400
 Wire Wire Line
 	4500 4400 4500 4200
-Connection ~ 4150 4400
 Wire Wire Line
 	5350 3350 5350 4400
 Connection ~ 4500 4400
@@ -323,4 +318,35 @@ F 3 "" H 3600 2950 50  0000 L CNN
 	1    3600 3050
 	1    0    0    -1  
 $EndComp
+$Comp
+L R R?
+U 1 1 5719C3CA
+P 4150 3900
+F 0 "R?" V 4230 3900 50  0000 C CNN
+F 1 "470" V 4150 3900 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 4080 3900 30  0001 C CNN
+F 3 "" H 4150 3900 30  0000 C CNN
+	1    4150 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Led_Small D?
+U 1 1 5719C445
+P 4150 3450
+F 0 "D?" H 4100 3575 50  0000 L CNN
+F 1 "Led_Small" H 3975 3350 50  0000 L CNN
+F 2 "" V 4150 3450 50  0000 C CNN
+F 3 "" V 4150 3450 50  0000 C CNN
+	1    4150 3450
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3900 3150 4150 3150
+Wire Wire Line
+	4150 3150 4150 3350
+Wire Wire Line
+	4150 3550 4150 3750
+Wire Wire Line
+	4150 4050 4150 4400
+Connection ~ 4150 4400
 $EndSCHEMATC
