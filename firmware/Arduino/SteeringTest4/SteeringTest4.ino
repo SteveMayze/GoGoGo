@@ -75,7 +75,35 @@ void setup() {
   rightRunning  = false;
 }
 
+
 void setSpeed(int wheel, int speed) {
+  int calibratedValue = 0;
+  if (wheel == lpwmPin) {
+      lspeed = speed;
+      msg = "Setting RIGHT ";
+      calibratedValue = getCalibratedSpeed(lspeed, analogRead(lTrim), lTare);
+  } else {
+      rspeed = speed;
+      msg = "Setting RIGHT ";
+      calibratedValue = getCalibratedSpeed(rspeed, analogRead(rTrim), rTare);
+  }
+  analogWrite(wheel, calibratedValue);
+}
+
+int getCalibratedSpeed(int speed, int trimmer, int tare){
+  int calibratedValue = 0;
+  double cx = 0.0;
+      cx = ((trimmer - 512) * -1) + tare;
+      cx = cx / 512;
+      calibratedValue = speed + (cx * 127);
+      calibratedValue = (calibratedValue < 0 ? 0 :  (calibratedValue > 255 ? 255 : calibratedValue));
+      msg = msg + "speed=" + speed + ", Calibrated value=" + calibratedValue + ", cx=" + cx;
+  Serial.println(msg);
+  return calibratedValue;  
+}
+
+
+void ysetSpeed(int wheel, int speed) {
   int calibratedValue = 0;
   int cx = 0;
   
