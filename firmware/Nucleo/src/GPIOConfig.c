@@ -46,13 +46,6 @@ void GPIOConfig_SetPWMPin(GPIO_TypeDef* port, uint16_t pin) {
 
 	if (port == GPIOC) {
 		RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
-		if (pin == GPIO_Pin_6) {
-			GPIO_PinAFConfig(port, GPIO_PinSource6, GPIO_AF_0);
-		}
-		if (pin == GPIO_Pin_7) {
-			GPIO_PinAFConfig(port, GPIO_PinSource7, GPIO_AF_0);
-		}
-
 		// Set up the Pin
 		GPIOInitStructure.GPIO_Pin = pin;
 		GPIOInitStructure.GPIO_OType = GPIO_OType_PP;
@@ -60,6 +53,14 @@ void GPIOConfig_SetPWMPin(GPIO_TypeDef* port, uint16_t pin) {
 		GPIOInitStructure.GPIO_Mode = GPIO_Mode_AF;
 		GPIOInitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 		GPIO_Init(port, &GPIOInitStructure);
+
+		if (pin == GPIO_Pin_6) {
+			GPIO_PinAFConfig(port, GPIO_PinSource6, GPIO_AF_0);
+		}
+		if (pin == GPIO_Pin_7) {
+			GPIO_PinAFConfig(port, GPIO_PinSource7, GPIO_AF_0);
+		}
+
 
 		// Set up the timer
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
@@ -76,10 +77,6 @@ void GPIOConfig_SetPWMPin(GPIO_TypeDef* port, uint16_t pin) {
 		TIM_OCInitiStructure.TIM_OutputState = TIM_OutputState_Enable;
 		TIM_OCInitiStructure.TIM_OCPolarity = TIM_OCPolarity_Low;
 		TIM_OCInitiStructure.TIM_Pulse = 0;
-//		TIM_OCInitiStructure.TIM_OutputNState = TIM_OutputNState_Enable;
-//		TIM_OCInitiStructure.TIM_OCNPolarity = TIM_OCNPolarity_High;
-//		TIM_OCInitiStructure.TIM_OCIdleState = TIM_OCIdleState_Set;
-//		TIM_OCInitiStructure.TIM_OCNIdleState = TIM_OCNIdleState_Reset;
 		if (pin == GPIO_Pin_6) {  // Channel 1
 			TIM_OC1Init(TIM3, &TIM_OCInitiStructure);
 			TIM_OC1PreloadConfig(TIM3, TIM_OCPreload_Enable);
@@ -88,9 +85,6 @@ void GPIOConfig_SetPWMPin(GPIO_TypeDef* port, uint16_t pin) {
 			TIM_OC2Init(TIM3, &TIM_OCInitiStructure);
 			TIM_OC2PreloadConfig(TIM3, TIM_OCPreload_Enable);
 		}
-		// TIM_SelectOnePulseMode(TIM3, TIM_OPMode_Repetitive);
-		// TIM_CtrlPWMOutputs(TIM3, ENABLE);
-
 	}
 }
 
@@ -103,15 +97,15 @@ void GPIOConfig_SetInterruptPin(GPIO_TypeDef* port, uint16_t pin) {
 
 	if (port == GPIOA) {
 
-		if( pin == GPIO_Pin_0) {
+		if( pin == GPIO_Pin_0) { // Left Wheel
 			SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, EXTI_PinSource0);
 			EXTI_InitStructure.EXTI_Line = EXTI_Line0;
 			NVIC_InitStructure.NVIC_IRQChannel = EXTI0_1_IRQn;
 		}
-		if( pin == GPIO_Pin_1) {
-			SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, EXTI_PinSource1);
-			EXTI_InitStructure.EXTI_Line = EXTI_Line1;
-			NVIC_InitStructure.NVIC_IRQChannel = EXTI2_3_IRQn;
+		if( pin == GPIO_Pin_4) { // Right Wheel
+			SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, EXTI_PinSource4);
+			EXTI_InitStructure.EXTI_Line = EXTI_Line4;
+			NVIC_InitStructure.NVIC_IRQChannel = EXTI4_15_IRQn;
 		}
 
 	}
