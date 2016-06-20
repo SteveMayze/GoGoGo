@@ -230,8 +230,8 @@ int main(int argc, char* argv[]) {
 					rightWheel(direction, rSpeed, distance);
 
 				} else {
-					leftWheel(direction, lSpeed, distance);
-					rightWheel(direction, rSpeed, distance);
+					leftWheel(direction, lSpeed / 2, distance);
+					rightWheel(direction, rSpeed / 2, distance);
 
 				}
 				cycle++;
