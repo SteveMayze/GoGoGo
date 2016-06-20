@@ -46,17 +46,30 @@
  	 ENC    	PA1		INPUT/INTERRUPT
 
  */
-#define LEFT_STBY GPIO_Pin_0 // Port B
-#define LEFT_INP1 GPIO_Pin_1 // Port B
-#define LEFT_INP2 GPIO_Pin_2 // Port B
-#define LEFT_ENC GPIO_Pin_0 // Port A EXTI0_1
-#define LEFT_PWM GPIO_Pin_6 // Port C
+// NUCLEO Defines
+//#define LEFT_STBY GPIO_Pin_0 // Port B
+//#define LEFT_INP1 GPIO_Pin_1 // Port B
+//#define LEFT_INP2 GPIO_Pin_2 // Port B
+//#define LEFT_ENC GPIO_Pin_0 // Port A EXTI0_1
+//#define LEFT_PWM GPIO_Pin_6 // Port C
+//
+//#define RIGHT_STBY GPIO_Pin_3 // Port B
+//#define RIGHT_INP1 GPIO_Pin_4 // Port B (Swapped from 4)
+//#define RIGHT_INP2 GPIO_Pin_5 // Port B (Swapped from 5)
+//#define RIGHT_ENC GPIO_Pin_4 // Port A EXTI2_3 - Formally Pin_0
+//#define RIGHT_PWM GPIO_Pin_7 // Port C
 
-#define RIGHT_STBY GPIO_Pin_3 // Port B
-#define RIGHT_INP1 GPIO_Pin_4 // Port B (Swapped from 4)
-#define RIGHT_INP2 GPIO_Pin_5 // Port B (Swapped from 5)
+#define LEFT_STBY GPIO_Pin_8 // Port B
+#define LEFT_INP1 GPIO_Pin_9 // Port B
+#define LEFT_INP2 GPIO_Pin_10 // Port B
+#define LEFT_ENC GPIO_Pin_0 // Port A EXTI0_1
+#define LEFT_PWM GPIO_Pin_6 // Port A
+
+#define RIGHT_STBY GPIO_Pin_11 // Port B
+#define RIGHT_INP1 GPIO_Pin_12 // Port B (Swapped from 4)
+#define RIGHT_INP2 GPIO_Pin_13 // Port B (Swapped from 5)
 #define RIGHT_ENC GPIO_Pin_4 // Port A EXTI2_3 - Formally Pin_0
-#define RIGHT_PWM GPIO_Pin_7 // Port C
+#define RIGHT_PWM GPIO_Pin_7 // Port A
 
 
 void setup(void);
@@ -88,7 +101,7 @@ void setup(void){
 
 	GPIOConfig_InputPin(GPIOA, LEFT_ENC); // Left Encoder Pin
 	GPIOConfig_SetInterruptPin(GPIOA, LEFT_ENC); // Left Encoder
-	GPIOConfig_SetPWMPin(GPIOC, LEFT_PWM); // Left PWM
+	GPIOConfig_SetPWMPin(GPIOA, LEFT_PWM); // Left PWM
 
 
 
@@ -98,7 +111,7 @@ void setup(void){
 
 	 GPIOConfig_InputPin(GPIOA, RIGHT_ENC); // Right Encoder Pin
 	 GPIOConfig_SetInterruptPin(GPIOA, RIGHT_ENC); // Right Encoder
-	 GPIOConfig_SetPWMPin(GPIOC, RIGHT_PWM); // Right PWM
+	 GPIOConfig_SetPWMPin(GPIOA, RIGHT_PWM); // Right PWM
 }
 
 /**

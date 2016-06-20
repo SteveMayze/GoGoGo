@@ -44,8 +44,8 @@ void GPIOConfig_SetPWMPin(GPIO_TypeDef* port, uint16_t pin) {
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
 	TIM_OCInitTypeDef TIM_OCInitiStructure;
 
-	if (port == GPIOC) {
-		RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
+	if (port == GPIOA) {
+		RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
 		// Set up the Pin
 		GPIOInitStructure.GPIO_Pin = pin;
 		GPIOInitStructure.GPIO_OType = GPIO_OType_PP;
@@ -55,10 +55,10 @@ void GPIOConfig_SetPWMPin(GPIO_TypeDef* port, uint16_t pin) {
 		GPIO_Init(port, &GPIOInitStructure);
 
 		if (pin == GPIO_Pin_6) {
-			GPIO_PinAFConfig(port, GPIO_PinSource6, GPIO_AF_0);
+			GPIO_PinAFConfig(port, GPIO_PinSource6, GPIO_AF_1);
 		}
 		if (pin == GPIO_Pin_7) {
-			GPIO_PinAFConfig(port, GPIO_PinSource7, GPIO_AF_0);
+			GPIO_PinAFConfig(port, GPIO_PinSource7, GPIO_AF_1);
 		}
 
 
