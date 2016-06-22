@@ -72,6 +72,17 @@
 #define RIGHT_PWM GPIO_Pin_7 // Port A
 
 
+#define LEFT_FWD ((uint16_t)0x0001)
+#define LEFT_REV ((uint16_t)0x0002)
+#define RIGHT_FWD ((uint16_t)0x0003)
+#define RIGHT_REV ((uint16_t)0x0004)
+#define FORWARD ((uint16_t)0x0100)
+#define REVERSE ((uint16_t)0x0200)
+#define ALL_STOP ((uint16_t)0x0300)
+
+
+
+
 void setup(void);
 void EXT0_1_IRQHandler(void);
 void EXTI4_15_IRQHandler (void);
@@ -205,6 +216,58 @@ void rightStop(void) {
 	right_running = false;
 }
 
+void runCommand( uint16_t command, uint16_t speed, uint32_t distance ){
+	bool running = true;
+	bool newcmd = true;
+	while( running ){
+		if(newcmd){
+			newcmd = false;
+		switch( command ){
+			case FORWARD:
+				leftWheel(true, speed, distance);
+				rightWheel(true, speed, distance);
+				break;
+			case REVERSE:
+				leftWheel(false, speed, distance);
+				rightWheel(false, speed, distance);
+				break;
+			case LEFT_FWD:
+				rightStop();
+				leftWheel(true, speed, distance);
+				break;
+			case LEFT_REV:
+				rightStop();
+				leftWheel(false, speed, distance);
+				break;
+			case RIGHT_FWD:
+				leftStop();
+				rightWheel(true, speed, distance);
+				break;
+			case RIGHT_REV:
+				leftStop();
+				rightWheel(false, speed, distance);
+				break;
+			case ALL_STOP:
+				allStop();
+				break;
+			default:
+				break;
+			}
+		}
+		running = left_running  || right_running;
+		if (running) {
+
+			if (stop_left && left_running) {
+				leftStop();
+			}
+
+			if (stop_right && right_running) {
+				rightStop();
+			}
+		}
+	}
+}
+
 
 int main(int argc, char* argv[]) {
 
@@ -214,9 +277,9 @@ int main(int argc, char* argv[]) {
 	int cycle = 0;
 	bool direction = false;
 
-	int distance = 1000;
-	int lSpeed = 70;
-	int rSpeed = 70;
+	uint32_t distance = 100;
+	uint16_t fSpeed = 60;
+	uint16_t rSpeed = 35;
 
 	while (1) {
 		if (cycles < 0 || cycle < cycles) {
@@ -226,25 +289,43 @@ int main(int argc, char* argv[]) {
 
 
 				if (direction) {
-					leftWheel(direction, lSpeed, distance);
-					rightWheel(direction, rSpeed, distance);
-
+//					leftWheel(direction, lSpeed, distance);
+//					rightWheel(direction, rSpeed, distance);
+					runCommand( FORWARD, fSpeed, distance / 2);
+					delay();
+					runCommand(LEFT_FWD, fSpeed, distance / 3);
+					delay();
+					runCommand( FORWARD, fSpeed, distance / 2);
+					delay();
+					runCommand(LEFT_FWD, fSpeed, distance / 3);
+					delay();
+					runCommand( FORWARD, fSpeed, distance / 2);
+					delay();
+					runCommand(LEFT_FWD, fSpeed, distance / 3);
+					delay();
+					runCommand( FORWARD, fSpeed, distance / 2);
+					delay();
+					allStop();
 				} else {
-					leftWheel(direction, lSpeed / 2, distance);
-					rightWheel(direction, rSpeed / 2, distance);
-
+//					leftWheel(direction, lSpeed / 2, distance);
+//					rightWheel(direction, rSpeed / 2, distance);
+					runCommand( REVERSE, rSpeed, distance);
+					delay();
+					runCommand(RIGHT_FWD, rSpeed, distance / 4);
+					delay();
+					runCommand( REVERSE, rSpeed, distance);
+					delay();
+					runCommand(RIGHT_FWD, rSpeed, distance / 4);
+					delay();
+					runCommand( REVERSE, rSpeed, distance);
+					delay();
+					runCommand(RIGHT_FWD, rSpeed, distance / 4);
+					delay();
+					runCommand( REVERSE, rSpeed, distance);
+					delay();
+					allStop();
 				}
 				cycle++;
-			}
-		}
-		if (left_running || right_running) {
-
-			if (stop_left && left_running) {
-				leftStop();
-			}
-
-			if (stop_right && right_running) {
-				rightStop();
 			}
 		}
 	}
