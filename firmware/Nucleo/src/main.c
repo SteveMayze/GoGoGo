@@ -1,5 +1,4 @@
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -8,7 +7,6 @@
 #include "GPIOConfig.h"
 #include "GPIO.h"
 #include "cmsis_device.h"
-
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
@@ -32,18 +30,18 @@
  Tentative re-mapping
 
  LEFT
- 	 STBY   	PB0		OUPTUT
- 	 IN1    	PB1		OUTPUT
- 	 IN2    	PB2		OUTPUT
- 	 PWM	D12	PC6	AF0:TIM3_CH1
- 	 ENC    	PA0		INPUT/INTERRUPT
+ STBY   	PB0		OUPTUT
+ IN1    	PB1		OUTPUT
+ IN2    	PB2		OUTPUT
+ PWM	D12	PC6	AF0:TIM3_CH1
+ ENC    	PA0		INPUT/INTERRUPT
 
  RIGHT
- 	 STBY   	PB3		OUTPUT
- 	 IN1    	PB4		OUTPUT
- 	 IN2    	PB5		OUTPUT
- 	 PWM	D11	PC7	AF0:TIM3_CH2
- 	 ENC    	PA1		INPUT/INTERRUPT
+ STBY   	PB3		OUTPUT
+ IN1    	PB4		OUTPUT
+ IN2    	PB5		OUTPUT
+ PWM	D11	PC7	AF0:TIM3_CH2
+ ENC    	PA1		INPUT/INTERRUPT
 
  */
 // NUCLEO Defines
@@ -58,7 +56,6 @@
 //#define RIGHT_INP2 GPIO_Pin_5 // Port B (Swapped from 5)
 //#define RIGHT_ENC GPIO_Pin_4 // Port A EXTI2_3 - Formally Pin_0
 //#define RIGHT_PWM GPIO_Pin_7 // Port C
-
 #define LEFT_STBY GPIO_Pin_8 // Port B
 #define LEFT_INP1 GPIO_Pin_9 // Port B
 #define LEFT_INP2 GPIO_Pin_10 // Port B
@@ -71,7 +68,6 @@
 #define RIGHT_ENC GPIO_Pin_4 // Port A EXTI2_3 - Formally Pin_0
 #define RIGHT_PWM GPIO_Pin_7 // Port A
 
-
 #define LEFT_FWD ((uint16_t)0x0001)
 #define LEFT_REV ((uint16_t)0x0002)
 #define RIGHT_FWD ((uint16_t)0x0003)
@@ -80,12 +76,9 @@
 #define REVERSE ((uint16_t)0x0200)
 #define ALL_STOP ((uint16_t)0x0300)
 
-
-
-
 void setup(void);
 void EXT0_1_IRQHandler(void);
-void EXTI4_15_IRQHandler (void);
+void EXTI4_15_IRQHandler(void);
 
 void delay(void);
 
@@ -95,9 +88,8 @@ void allStop(void);
 void leftStop(void);
 void rightStop(void);
 
-
-uint32_t left_counter = 0;
-uint32_t right_counter = 0;
+uint64_t left_counter = 0;
+uint64_t right_counter = 0;
 bool stop_left = false;
 bool stop_right = false;
 bool left_running = false;
@@ -105,7 +97,9 @@ bool right_running = false;
 uint32_t left_limit = 0;
 uint32_t right_limit = 0;
 
-void setup(void){
+uint16_t left_compensation = 0;
+
+void setup(void) {
 	GPIOConfig_OutputPin(GPIOB, LEFT_STBY); // Left Standby
 	GPIOConfig_OutputPin(GPIOB, LEFT_INP1); // Left Inp1
 	GPIOConfig_OutputPin(GPIOB, LEFT_INP2); // Left Inp2
@@ -114,22 +108,20 @@ void setup(void){
 	GPIOConfig_SetInterruptPin(GPIOA, LEFT_ENC); // Left Encoder
 	GPIOConfig_SetPWMPin(GPIOA, LEFT_PWM); // Left PWM
 
+	GPIOConfig_OutputPin(GPIOB, RIGHT_STBY); // Right Standby
+	GPIOConfig_OutputPin(GPIOB, RIGHT_INP1); // Right Inp1
+	GPIOConfig_OutputPin(GPIOB, RIGHT_INP2); // Right Inp2
 
-
-	 GPIOConfig_OutputPin(GPIOB, RIGHT_STBY); // Right Standby
-	 GPIOConfig_OutputPin(GPIOB, RIGHT_INP1); // Right Inp1
-	 GPIOConfig_OutputPin(GPIOB, RIGHT_INP2); // Right Inp2
-
-	 GPIOConfig_InputPin(GPIOA, RIGHT_ENC); // Right Encoder Pin
-	 GPIOConfig_SetInterruptPin(GPIOA, RIGHT_ENC); // Right Encoder
-	 GPIOConfig_SetPWMPin(GPIOA, RIGHT_PWM); // Right PWM
+	GPIOConfig_InputPin(GPIOA, RIGHT_ENC); // Right Encoder Pin
+	GPIOConfig_SetInterruptPin(GPIOA, RIGHT_ENC); // Right Encoder
+	GPIOConfig_SetPWMPin(GPIOA, RIGHT_PWM); // Right PWM
 }
 
 /**
  * Interrupt handler for the LEFT encoder wheel
  */
 void EXTI0_1_IRQHandler(void) {
-	if((EXTI->PR & EXTI_PR_PR0 ) != (uint32_t)0){
+	if ((EXTI->PR & EXTI_PR_PR0) != (uint32_t) 0) {
 		EXTI->PR = EXTI_PR_PR0;
 		left_counter++;
 		stop_left = left_counter > left_limit;
@@ -141,8 +133,8 @@ void EXTI0_1_IRQHandler(void) {
  * Interrupt handler for the RIGHT encoder wheel
  */
 // Formerly EXTI2_3_IRQHandler
-void EXTI4_15_IRQHandler (void) {
-	if((EXTI->PR & EXTI_PR_PR4 ) != (uint32_t)0){
+void EXTI4_15_IRQHandler(void) {
+	if ((EXTI->PR & EXTI_PR_PR4) != (uint32_t) 0) {
 		EXTI->PR = EXTI_PR_PR4;
 		right_counter++;
 		stop_right = right_counter > right_limit;
@@ -150,10 +142,9 @@ void EXTI4_15_IRQHandler (void) {
 	}
 }
 
-
-void delay(void){
+void delay(void) {
 	uint32_t i = 12345689;
-	while((i != 0u)){
+	while ((i != 0u)) {
 		i--;
 	}
 }
@@ -192,7 +183,7 @@ void rightWheel(bool forward, uint16_t velocity, uint32_t steps) {
 
 }
 
-void allStop(void){
+void allStop(void) {
 	leftStop();
 	rightStop();
 
@@ -216,13 +207,14 @@ void rightStop(void) {
 	right_running = false;
 }
 
-void runCommand( uint16_t command, uint16_t speed, uint32_t distance ){
+void runCommand(uint16_t command, uint16_t speed, uint32_t distance) {
 	bool running = true;
 	bool newcmd = true;
-	while( running ){
-		if(newcmd){
+	left_compensation = speed;
+	while (running) {
+		if (newcmd) {
 			newcmd = false;
-		switch( command ){
+			switch (command) {
 			case FORWARD:
 				leftWheel(true, speed, distance);
 				rightWheel(true, speed, distance);
@@ -254,8 +246,27 @@ void runCommand( uint16_t command, uint16_t speed, uint32_t distance ){
 				break;
 			}
 		}
-		running = left_running  || right_running;
+		running = left_running || right_running;
 		if (running) {
+
+			if (command == FORWARD || command == REVERSE) {
+				if (right_counter > left_counter) {
+					// Right wheel is faster
+					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, left_compensation -= 1);
+					GPIO_AnalogWrite(GPIOC, LEFT_PWM, left_compensation += 1);
+
+				}
+				if (left_counter > right_counter) {
+					// Right wheel is slower
+					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, left_compensation += 1);
+					GPIO_AnalogWrite(GPIOC, LEFT_PWM, left_compensation -= 1);
+				}
+				if (left_counter == right_counter) {
+					left_compensation = speed;
+					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, left_compensation);
+					GPIO_AnalogWrite(GPIOC, LEFT_PWM, left_compensation);
+				}
+			}
 
 			if (stop_left && left_running) {
 				leftStop();
@@ -268,6 +279,37 @@ void runCommand( uint16_t command, uint16_t speed, uint32_t distance ){
 	}
 }
 
+int x_main_2(int argc, char* argv[]) {
+
+	setup();
+
+	int cycles = 2;
+	int cycle = 0;
+	bool direction = false;
+
+	uint32_t distance = 2000;
+	uint16_t fSpeed = 60;
+	uint16_t rSpeed = 35;
+
+	while (1) {
+		if (cycles < 0 || cycle < cycles) {
+			if (!left_running && !right_running) {
+				delay();
+				direction = !direction;
+
+				if (direction) {
+					runCommand( FORWARD, fSpeed, distance);
+					allStop();
+					delay();
+				} else {
+					runCommand( REVERSE, rSpeed, distance);
+					allStop();
+				}
+				cycle++;
+			}
+		}
+	}
+}
 
 int main(int argc, char* argv[]) {
 
@@ -286,7 +328,6 @@ int main(int argc, char* argv[]) {
 			if (!left_running && !right_running) {
 				delay();
 				direction = !direction;
-
 
 				if (direction) {
 //					leftWheel(direction, lSpeed, distance);
