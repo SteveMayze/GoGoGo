@@ -97,7 +97,7 @@ bool right_running = false;
 uint32_t left_limit = 0;
 uint32_t right_limit = 0;
 
-uint16_t left_compensation = 0;
+uint16_t compensation = 0;
 
 void setup(void) {
 	GPIOConfig_OutputPin(GPIOB, LEFT_STBY); // Left Standby
@@ -210,7 +210,7 @@ void rightStop(void) {
 void runCommand(uint16_t command, uint16_t speed, uint32_t distance) {
 	bool running = true;
 	bool newcmd = true;
-	left_compensation = speed;
+	compensation = speed;
 	while (running) {
 		if (newcmd) {
 			newcmd = false;
@@ -252,19 +252,19 @@ void runCommand(uint16_t command, uint16_t speed, uint32_t distance) {
 			if (command == FORWARD || command == REVERSE) {
 				if (right_counter > left_counter) {
 					// Right wheel is faster
-					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, left_compensation -= 1);
-					GPIO_AnalogWrite(GPIOC, LEFT_PWM, left_compensation += 1);
+					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, compensation - 1);
+					GPIO_AnalogWrite(GPIOC, LEFT_PWM, compensation + 1);
 
 				}
 				if (left_counter > right_counter) {
 					// Right wheel is slower
-					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, left_compensation += 1);
-					GPIO_AnalogWrite(GPIOC, LEFT_PWM, left_compensation -= 1);
+					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, compensation + 1);
+					GPIO_AnalogWrite(GPIOC, LEFT_PWM, compensation - 1);
 				}
 				if (left_counter == right_counter) {
-					left_compensation = speed;
-					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, left_compensation);
-					GPIO_AnalogWrite(GPIOC, LEFT_PWM, left_compensation);
+					compensation = speed;
+					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, compensation);
+					GPIO_AnalogWrite(GPIOC, LEFT_PWM, compensation);
 				}
 			}
 
@@ -274,6 +274,38 @@ void runCommand(uint16_t command, uint16_t speed, uint32_t distance) {
 
 			if (stop_right && right_running) {
 				rightStop();
+			}
+		}
+	}
+}
+
+int x_main_3(int argc, char* argv[]) {
+
+	setup();
+
+	int cycles = 10;
+	int cycle = 0;
+	bool direction = false;
+
+	uint32_t distance = 300;
+	uint16_t fSpeed = 60;
+	uint16_t rSpeed = 35;
+
+	while (1) {
+		if (cycles < 0 || cycle < cycles) {
+			if (!left_running && !right_running) {
+				delay();
+				direction = !direction;
+
+				if (direction) {
+					runCommand( FORWARD, fSpeed, distance);
+					allStop();
+					delay();
+				} else {
+					runCommand( REVERSE, rSpeed, distance);
+					allStop();
+				}
+				cycle++;
 			}
 		}
 	}
