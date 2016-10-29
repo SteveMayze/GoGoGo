@@ -8,8 +8,7 @@
 #ifndef INCLUDE_GPIOCONFIG_H_
 #define INCLUDE_GPIOCONFIG_H_
 
-#include <stdint.h>
-#include "cmsis_device.h"
+#include "common.h"
 
 #define LOW 0
 #define HIGH 1

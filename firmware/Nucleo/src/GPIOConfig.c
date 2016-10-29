@@ -88,7 +88,13 @@ void GPIOConfig_SetPWMPin(GPIO_TypeDef* port, uint16_t pin) {
 	}
 }
 
+void GPIOConfig_SetTickCounters(GPIO_TypeDef *port) {
 
+}
+
+//////////////////////////////////////////////////////////////////////////////
+///
+//////////////////////////////////////////////////////////////////////////////
 void GPIOConfig_SetInterruptPin(GPIO_TypeDef* port, uint16_t pin) {
 
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
