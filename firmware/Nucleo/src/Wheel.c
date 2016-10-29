@@ -1,14 +1,9 @@
 
 #include "Wheel.h"
+#include "Wheel_IRQ.h"
 
-static volatile uint64_t left_counter = 0;
-static volatile uint64_t right_counter = 0;
-static volatile bool stop_left = false;
-static volatile bool stop_right = false;
 bool left_running = false;
 bool right_running = false;
-uint32_t left_limit = 0;
-uint32_t right_limit = 0;
 
 uint16_t compensation = 0;
 
@@ -38,38 +33,16 @@ void Wheel_Initialise(void) {
 
 
 
-
-/**
- * Interrupt handler for the LEFT encoder wheel
- */
-void EXTI0_1_IRQHandler(void) {
-	if ((EXTI->PR & EXTI_PR_PR0) != (uint32_t) 0) {
-		EXTI->PR = EXTI_PR_PR0;
-		left_counter++;
-		stop_left = left_counter > left_limit;
-		NVIC_ClearPendingIRQ(EXTI0_1_IRQn);
-	}
-}
-
-/**
- * Interrupt handler for the RIGHT encoder wheel
- */
-// Formerly EXTI2_3_IRQHandler
-void EXTI4_15_IRQHandler(void) {
-	if ((EXTI->PR & EXTI_PR_PR4) != (uint32_t) 0) {
-		EXTI->PR = EXTI_PR_PR4;
-		right_counter++;
-		stop_right = right_counter > right_limit;
-		NVIC_ClearPendingIRQ(EXTI4_15_IRQn);
-	}
+void Wheel_Straight(bool forward, uint16_t velocity, uint32_t steps){
+	Wheel_TurnLeftWheel(forward, velocity, steps);
+	Wheel_TurnRightWheel(forward, velocity, steps);
 }
 
 
 void Wheel_TurnLeftWheel(bool forward, uint16_t velocity, uint32_t steps) {
 	GPIO_AnalogWrite(GPIOC, LEFT_PWM, velocity);
-	left_counter = 0;
-	left_limit = steps;
-	GPIO_DigitalWrite(GPIOB, LEFT_STBY, HIGH);
+	Wheel_IRQ_SetLeftCounter(0);
+	Wheel_IRQ_SetLeftLLimit(steps);
 	if (forward) {
 		GPIO_DigitalWrite(GPIOB, LEFT_INP1, HIGH);
 		GPIO_DigitalWrite(GPIOB, LEFT_INP2, LOW);
@@ -77,16 +50,16 @@ void Wheel_TurnLeftWheel(bool forward, uint16_t velocity, uint32_t steps) {
 		GPIO_DigitalWrite(GPIOB, LEFT_INP1, LOW);
 		GPIO_DigitalWrite(GPIOB, LEFT_INP2, HIGH);
 	}
+	GPIO_DigitalWrite(GPIOB, LEFT_STBY, HIGH);
 	left_running = true;
-	stop_left = false;
+	Wheel_IRQ_SetStopLeft(false);
 
 }
 
 void Wheel_TurnRightWheel(bool forward, uint16_t velocity, uint32_t steps) {
 	GPIO_AnalogWrite(GPIOC, RIGHT_PWM, velocity);
-	right_counter = 0;
-	right_limit = steps;
-	GPIO_DigitalWrite(GPIOB, RIGHT_STBY, HIGH);
+	Wheel_IRQ_SetRightCounter(0);
+	Wheel_IRQ_SetRightLimit(steps);
 	if (forward) {
 		GPIO_DigitalWrite(GPIOB, RIGHT_INP1, LOW);
 		GPIO_DigitalWrite(GPIOB, RIGHT_INP2, HIGH);
@@ -94,8 +67,9 @@ void Wheel_TurnRightWheel(bool forward, uint16_t velocity, uint32_t steps) {
 		GPIO_DigitalWrite(GPIOB, RIGHT_INP1, HIGH);
 		GPIO_DigitalWrite(GPIOB, RIGHT_INP2, LOW);
 	}
+	GPIO_DigitalWrite(GPIOB, RIGHT_STBY, HIGH);
 	right_running = true;
-	stop_right = false;
+	Wheel_IRQ_SetStopRight(false);
 
 }
 
@@ -109,8 +83,8 @@ void Wheel_StopLeftWheel(void) {
 	GPIO_DigitalWrite(GPIOB, LEFT_INP1, LOW);
 	GPIO_DigitalWrite(GPIOB, LEFT_INP2, LOW);
 	GPIO_DigitalWrite(GPIOB, LEFT_STBY, LOW);
-	left_counter = 0;
-	left_limit = 0;
+	Wheel_IRQ_SetLeftCounter(0);
+	Wheel_IRQ_SetLeftLLimit(0);
 	left_running = false;
 }
 
@@ -118,8 +92,8 @@ void Wheel_StopRightWheel(void) {
 	GPIO_DigitalWrite(GPIOB, RIGHT_INP1, LOW);
 	GPIO_DigitalWrite(GPIOB, RIGHT_INP2, LOW);
 	GPIO_DigitalWrite(GPIOB, RIGHT_STBY, LOW);
-	right_counter = 0;
-	right_limit = 0;
+	Wheel_IRQ_SetRightCounter(0);
+	Wheel_IRQ_SetRightLimit(0);
 	right_running = false;
 }
 
@@ -132,12 +106,10 @@ void Wheel_DoCommand(uint16_t command, uint16_t speed, uint32_t distance) {
 			newcmd = false;
 			switch (command) {
 			case FORWARD:
-				Wheel_TurnLeftWheel(true, speed, distance);
-				Wheel_TurnRightWheel(true, speed, distance);
+				Wheel_Straight(true, speed, distance);
 				break;
 			case REVERSE:
-				Wheel_TurnLeftWheel(false, speed, distance);
-				Wheel_TurnRightWheel(false, speed, distance);
+				Wheel_Straight(false, speed, distance);
 				break;
 			case LEFT_FWD:
 				Wheel_StopRightWheel();
@@ -166,29 +138,29 @@ void Wheel_DoCommand(uint16_t command, uint16_t speed, uint32_t distance) {
 		if (running) {
 
 			if (command == FORWARD || command == REVERSE) {
-				if (right_counter > left_counter) {
+				if (Wheel_IRQ_GetRightCounter() > Wheel_IRQ_GetLeftCounter()) {
 					// Right wheel is faster
 					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, compensation - 1);
 					GPIO_AnalogWrite(GPIOC, LEFT_PWM, compensation + 1);
 
 				}
-				if (left_counter > right_counter) {
+				if (Wheel_IRQ_GetLeftCounter() > Wheel_IRQ_GetRightCounter()) {
 					// Right wheel is slower
 					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, compensation + 1);
 					GPIO_AnalogWrite(GPIOC, LEFT_PWM, compensation - 1);
 				}
-				if (left_counter == right_counter) {
+				if (Wheel_IRQ_GetLeftCounter() == Wheel_IRQ_GetRightCounter()) {
 					compensation = speed;
 					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, compensation);
 					GPIO_AnalogWrite(GPIOC, LEFT_PWM, compensation);
 				}
 			}
 
-			if (stop_left && left_running) {
+			if (Wheel_IRQ_GetStopLeft() && left_running) {
 				Wheel_StopLeftWheel();
 			}
 
-			if (stop_right && right_running) {
+			if (Wheel_IRQ_GetStopRight() && right_running) {
 				Wheel_StopRightWheel();
 			}
 		}

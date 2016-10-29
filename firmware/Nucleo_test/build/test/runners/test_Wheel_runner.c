@@ -29,6 +29,7 @@
 #include <stdio.h>
 #include "mock_GPIO.h"
 #include "mock_GPIOConfig.h"
+#include "mock_Wheel_IRQ.h"
 
 int GlobalExpectCount;
 int GlobalVerifyOrder;
@@ -38,6 +39,19 @@ char* GlobalOrderError;
 extern void setUp(void);
 extern void tearDown(void);
 extern void test_whenWheelsAreInitialised_thenWeSetTheCorrectPins();
+extern void test_whenWheelsGoForward_thenWeSetTheCorrectPinsForLeftWheel();
+extern void test_whenWheelsGoForward_thenWeSetTheEnablePinForLeftWheel();
+extern void test_whenWheelsGoForward_thenWeSetTheVelocityOfTheLeftWheel();
+extern void test_whenWheelsGoForward_thenWeSetTheCorrectPinsForRightWheel();
+extern void test_whenWheelsGoForward_thenWeSetTheEnablePinForRightWheel();
+extern void test_whenWheelsGoForward_thenWeSetTheVelocityOfTheRightWheel();
+extern void test_whenWheelsGoBackward_thenSetTheCorrectDirectionPinsForLeftWheel();
+extern void test_whenWheelsGoBackward_thenWeSetTheEnablePinForLeftWheel();
+extern void test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheLeftWheel();
+extern void test_whenWheelsGoBackward_thenWeSetTheCorrectPinsForRightWheel();
+extern void test_whenWheelsGoBackward_thenWeSetTheEnablePinForRightWheel();
+extern void test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheRightWheel();
+extern void test_whenDoCommandIsForward_thingsShouldEnd();
 
 
 /*=======Mock Management=====*/
@@ -48,16 +62,19 @@ static void CMock_Init(void)
   GlobalOrderError = NULL;
   mock_GPIO_Init();
   mock_GPIOConfig_Init();
+  mock_Wheel_IRQ_Init();
 }
 static void CMock_Verify(void)
 {
   mock_GPIO_Verify();
   mock_GPIOConfig_Verify();
+  mock_Wheel_IRQ_Verify();
 }
 static void CMock_Destroy(void)
 {
   mock_GPIO_Destroy();
   mock_GPIOConfig_Destroy();
+  mock_Wheel_IRQ_Destroy();
 }
 
 /*=======Test Reset Option=====*/
@@ -76,7 +93,20 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_Wheel.c");
-  RUN_TEST(test_whenWheelsAreInitialised_thenWeSetTheCorrectPins, 10);
+  RUN_TEST(test_whenWheelsAreInitialised_thenWeSetTheCorrectPins, 12);
+  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheCorrectPinsForLeftWheel, 21);
+  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheEnablePinForLeftWheel, 39);
+  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheVelocityOfTheLeftWheel, 48);
+  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheCorrectPinsForRightWheel, 62);
+  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheEnablePinForRightWheel, 81);
+  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheVelocityOfTheRightWheel, 92);
+  RUN_TEST(test_whenWheelsGoBackward_thenSetTheCorrectDirectionPinsForLeftWheel, 106);
+  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheEnablePinForLeftWheel, 123);
+  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheLeftWheel, 132);
+  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheCorrectPinsForRightWheel, 146);
+  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheEnablePinForRightWheel, 165);
+  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheRightWheel, 176);
+  RUN_TEST(test_whenDoCommandIsForward_thingsShouldEnd, 198);
 
   CMock_Guts_MemFreeFinal();
   return (UnityEnd());

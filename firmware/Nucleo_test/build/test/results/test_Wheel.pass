@@ -4,14 +4,55 @@
   :file: test_Wheel.c
 :successes:
 - :test: test_whenWheelsAreInitialised_thenWeSetTheCorrectPins
-  :line: 10
+  :line: 12
+  :message: ''
+- :test: test_whenWheelsGoForward_thenWeSetTheCorrectPinsForLeftWheel
+  :line: 21
+  :message: ''
+- :test: test_whenWheelsGoForward_thenWeSetTheEnablePinForLeftWheel
+  :line: 39
+  :message: ''
+- :test: test_whenWheelsGoForward_thenWeSetTheVelocityOfTheLeftWheel
+  :line: 48
+  :message: ''
+- :test: test_whenWheelsGoForward_thenWeSetTheCorrectPinsForRightWheel
+  :line: 62
+  :message: ''
+- :test: test_whenWheelsGoForward_thenWeSetTheEnablePinForRightWheel
+  :line: 81
+  :message: ''
+- :test: test_whenWheelsGoForward_thenWeSetTheVelocityOfTheRightWheel
+  :line: 92
+  :message: ''
+- :test: test_whenWheelsGoBackward_thenSetTheCorrectDirectionPinsForLeftWheel
+  :line: 106
+  :message: ''
+- :test: test_whenWheelsGoBackward_thenWeSetTheEnablePinForLeftWheel
+  :line: 123
+  :message: ''
+- :test: test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheLeftWheel
+  :line: 132
+  :message: ''
+- :test: test_whenWheelsGoBackward_thenWeSetTheCorrectPinsForRightWheel
+  :line: 146
+  :message: ''
+- :test: test_whenWheelsGoBackward_thenWeSetTheEnablePinForRightWheel
+  :line: 165
+  :message: ''
+- :test: test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheRightWheel
+  :line: 176
+  :message: ''
+- :test: test_whenDoCommandIsForward_thingsShouldEnd
+  :line: 198
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 1
-  :passed: 1
+  :total: 14
+  :passed: 14
   :failed: 0
   :ignored: 0
 :stdout:
+- Called custom_GetStopLeft
+- Called custom_GetStopLeft
 - ''

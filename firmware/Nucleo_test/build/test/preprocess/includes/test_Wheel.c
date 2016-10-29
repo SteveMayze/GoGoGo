@@ -3,4 +3,5 @@
 - Wheel.h
 - mock_GPIO.h
 - mock_GPIOConfig.h
+- mock_Wheel_IRQ.h
 - cmsis_device.h

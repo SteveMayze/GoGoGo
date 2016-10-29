@@ -8,7 +8,6 @@
 #ifndef INCLUDE_WHEEL_H_
 #define INCLUDE_WHEEL_H_
 
-
 #include "GPIOConfig.h"
 #include "cmsis_device.h"
 #include "stm32f0xx_gpio.h"
@@ -82,10 +81,7 @@
 
 void Wheel_Initialise(void);
 
-void EXT0_1_IRQHandler(void);
-void EXTI4_15_IRQHandler(void);
-
-
+void Wheel_Straight(bool forward, uint16_t velocity, uint32_t steps);
 void Wheel_TurnLeftWheel(bool forward, uint16_t velocity, uint32_t steps);
 void Wheel_TurnRightWheel(bool forward, uint16_t velocity, uint32_t steps);
 void Wheel_AllStop(void);
