@@ -7,6 +7,7 @@
 #include "mock_Wheel_IRQ.h"
 
 #include "cmsis_device.h"
+#include "Wheel_IRQ_Delegate.h"
 
 
 void test_whenWheelsAreInitialised_thenWeSetTheCorrectPins() {
@@ -185,26 +186,30 @@ void test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheRightWheel() {
 }
 
 
-bool custom_GetStopLeft(void) {
-  printf("Called custom_GetStopLeft\n");
-  return true;
-}
-
-bool custom_GetStopRight(void) {
-  printf("Called custom_GetStopRight\n");
-  return true;
-}
 
 void test_whenDoCommandIsForward_thingsShouldEnd(){
 
-   // Wheel_IRQ_GetLeftCounter_IgnoreAndReturn(11);
-   // Wheel_IRQ_GetStopLeft_IgnoreAndReturn(true);
+   Wheel_IRQ_Delegate_Reset();
 
-   Wheel_IRQ_GetStopLeft_fake.custom_fake = custom_GetStopLeft;
-   Wheel_IRQ_GetStopRight_fake.custom_fake = custom_GetStopLeft;
+   Wheel_IRQ_GetLeftCounter_fake.custom_fake = Wheel_IRQ_Delegate_GetLeftCounter;
+   Wheel_IRQ_GetRightCounter_fake.custom_fake = Wheel_IRQ_Delegate_GetRightCounter;
+   Wheel_IRQ_GetStopLeft_fake.custom_fake = Wheel_IRQ_Delegate_GetStopLeft;
+   Wheel_IRQ_GetStopRight_fake.custom_fake = Wheel_IRQ_Delegate_GetStopRight;
+   Wheel_IRQ_GetLeftLimit_fake.custom_fake = Wheel_IRQ_Delegate_GetLeftLimit;
+   Wheel_IRQ_GetRightLimit_fake.custom_fake = Wheel_IRQ_Delegate_GetRightLimit;
+
+   Wheel_IRQ_SetLeftCounter_fake.custom_fake = Wheel_IRQ_Delegate_SetLeftCounter;
+   Wheel_IRQ_SetRightCounter_fake.custom_fake = Wheel_IRQ_Delegate_SetRightCounter;
+   Wheel_IRQ_SetStopLeft_fake.custom_fake = Wheel_IRQ_Delegate_SetStopLeft;
+   Wheel_IRQ_SetStopRight_fake.custom_fake = Wheel_IRQ_Delegate_SetStopRight;
+   Wheel_IRQ_SetLeftLLimit_fake.custom_fake = Wheel_IRQ_Delegate_SetLeftLimit;
+   Wheel_IRQ_SetRightLimit_fake.custom_fake = Wheel_IRQ_Delegate_SetRightLimit;
+
 
    Wheel_DoCommand(FORWARD, 100, 10);
-
-   TEST_ASSERT_TRUE(true);
+   // After stopping, the counter is reset to 1.. this getter
+   // will increment this to simulate the IRQ handler.
+   TEST_ASSERT_TRUE( 1 == Wheel_IRQ_Delegate_GetLeftCounter());
+   TEST_ASSERT_TRUE( 1 == Wheel_IRQ_Delegate_GetRightCounter());
 
 }

@@ -4,46 +4,46 @@
   :file: test_Wheel.c
 :successes:
 - :test: test_whenWheelsAreInitialised_thenWeSetTheCorrectPins
-  :line: 12
+  :line: 13
   :message: ''
 - :test: test_whenWheelsGoForward_thenWeSetTheCorrectPinsForLeftWheel
-  :line: 21
+  :line: 22
   :message: ''
 - :test: test_whenWheelsGoForward_thenWeSetTheEnablePinForLeftWheel
-  :line: 39
+  :line: 40
   :message: ''
 - :test: test_whenWheelsGoForward_thenWeSetTheVelocityOfTheLeftWheel
-  :line: 48
+  :line: 49
   :message: ''
 - :test: test_whenWheelsGoForward_thenWeSetTheCorrectPinsForRightWheel
-  :line: 62
+  :line: 63
   :message: ''
 - :test: test_whenWheelsGoForward_thenWeSetTheEnablePinForRightWheel
-  :line: 81
+  :line: 82
   :message: ''
 - :test: test_whenWheelsGoForward_thenWeSetTheVelocityOfTheRightWheel
-  :line: 92
+  :line: 93
   :message: ''
 - :test: test_whenWheelsGoBackward_thenSetTheCorrectDirectionPinsForLeftWheel
-  :line: 106
+  :line: 107
   :message: ''
 - :test: test_whenWheelsGoBackward_thenWeSetTheEnablePinForLeftWheel
-  :line: 123
+  :line: 124
   :message: ''
 - :test: test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheLeftWheel
-  :line: 132
+  :line: 133
   :message: ''
 - :test: test_whenWheelsGoBackward_thenWeSetTheCorrectPinsForRightWheel
-  :line: 146
+  :line: 147
   :message: ''
 - :test: test_whenWheelsGoBackward_thenWeSetTheEnablePinForRightWheel
-  :line: 165
+  :line: 166
   :message: ''
 - :test: test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheRightWheel
-  :line: 176
+  :line: 177
   :message: ''
 - :test: test_whenDoCommandIsForward_thingsShouldEnd
-  :line: 198
+  :line: 190
   :message: ''
 :failures: []
 :ignores: []
@@ -53,6 +53,30 @@
   :failed: 0
   :ignored: 0
 :stdout:
-- Called custom_GetStopLeft
-- Called custom_GetStopLeft
+- Called Wheel_IRQ_Delegate_GetRightCounter 0
+- Called Wheel_IRQ_Delegate_GetLeftCounter 0
+- Called Wheel_IRQ_Delegate_GetLeftCounter 1
+- Called Wheel_IRQ_Delegate_GetRightCounter 1
+- Called Wheel_IRQ_Delegate_GetLeftCounter 2
+- Called Wheel_IRQ_Delegate_GetRightCounter 2
+- Called Wheel_IRQ_Delegate_GetRightCounter 3
+- Called Wheel_IRQ_Delegate_GetLeftCounter 3
+- Called Wheel_IRQ_Delegate_GetLeftCounter 4
+- Called Wheel_IRQ_Delegate_GetRightCounter 4
+- Called Wheel_IRQ_Delegate_GetLeftCounter 5
+- Called Wheel_IRQ_Delegate_GetRightCounter 5
+- Called Wheel_IRQ_Delegate_GetRightCounter 6
+- Called Wheel_IRQ_Delegate_GetLeftCounter 6
+- Called Wheel_IRQ_Delegate_GetLeftCounter 7
+- Called Wheel_IRQ_Delegate_GetRightCounter 7
+- Called Wheel_IRQ_Delegate_GetLeftCounter 8
+- Called Wheel_IRQ_Delegate_GetRightCounter 8
+- Called Wheel_IRQ_Delegate_GetRightCounter 9
+- Called Wheel_IRQ_Delegate_GetLeftCounter 9
+- Called Wheel_IRQ_Delegate_GetLeftCounter 10
+- Called Wheel_IRQ_Delegate_GetRightCounter 10
+- Called Wheel_IRQ_Delegate_GetLeftCounter 11
+- Called Wheel_IRQ_Delegate_GetRightCounter 11
+- Called Wheel_IRQ_Delegate_GetLeftCounter 0
+- Called Wheel_IRQ_Delegate_GetRightCounter 0
 - ''

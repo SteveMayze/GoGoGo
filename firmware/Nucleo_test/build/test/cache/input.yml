@@ -26,6 +26,7 @@
   - "../Nucleo/include/**"
   - "../Nucleo/system/include/cmsis/**"
   - "../Nucleo/system/include/stm32f0-stdperiph/**"
+  - test/**
   :test_toolchain_include: []
   :release_toolchain_include: []
 :files:

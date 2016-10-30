@@ -30,6 +30,7 @@
     - ../Nucleo/include/**
     - ../Nucleo/system/include/cmsis/**
     - ../Nucleo/system/include/stm32f0-stdperiph/**
+    - test/**
   :source:
     - ../Nucleo/src/**
   :support:
