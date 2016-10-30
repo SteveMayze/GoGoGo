@@ -26,6 +26,8 @@ void Wheel_IRQ_Delegate_SetRightLimit(uint32_t count);
 uint32_t Wheel_IRQ_Delegate_GetLeftLimit(void);
 uint32_t Wheel_IRQ_Delegate_GetRightLimit(void);
 
+uint64_t delegate_left_counter;
+uint64_t delegate_right_counter;
 
 
 #endif /* INCLUDE_WHEEL_IRQ_DELEGATE_H_ */

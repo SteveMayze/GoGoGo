@@ -407,17 +407,29 @@ void test_whenDoCommandIsForward_thingsShouldEnd(){
 
 
 
-
-
-   Wheel_DoCommand(((uint16_t)0x0100), 100, 10);
-
+   uint16_t count = 5;
 
 
 
+   Wheel_DoCommand(((uint16_t)0x0100), 100, count);
 
-   if ((1 == Wheel_IRQ_Delegate_GetLeftCounter())) {} else {UnityFail( ((" Expected TRUE Was FALSE")), (_U_UINT)((_U_UINT)(212)));};
 
-   if ((1 == Wheel_IRQ_Delegate_GetRightCounter())) {} else {UnityFail( ((" Expected TRUE Was FALSE")), (_U_UINT)((_U_UINT)(213)));};
+
+   UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((delegate_left_counter)), (((void *)0)), (_U_UINT)(212), UNITY_DISPLAY_STYLE_INT);
+
+   UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((delegate_right_counter)), (((void *)0)), (_U_UINT)(213), UNITY_DISPLAY_STYLE_INT);
+
+
+
+
+
+
+
+
+
+   UnityAssertEqualNumber((_U_SINT)((count + 1)), (_U_SINT)((Wheel_IRQ_GetStopLeft_fake.call_count)), (((void *)0)), (_U_UINT)(218), UNITY_DISPLAY_STYLE_INT);
+
+   UnityAssertEqualNumber((_U_SINT)((count + 1)), (_U_SINT)((Wheel_IRQ_GetStopRight_fake.call_count)), (((void *)0)), (_U_UINT)(219), UNITY_DISPLAY_STYLE_INT);
 
 
 

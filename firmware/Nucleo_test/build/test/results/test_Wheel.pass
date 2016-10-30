@@ -53,30 +53,4 @@
   :failed: 0
   :ignored: 0
 :stdout:
-- Called Wheel_IRQ_Delegate_GetRightCounter 0
-- Called Wheel_IRQ_Delegate_GetLeftCounter 0
-- Called Wheel_IRQ_Delegate_GetLeftCounter 1
-- Called Wheel_IRQ_Delegate_GetRightCounter 1
-- Called Wheel_IRQ_Delegate_GetLeftCounter 2
-- Called Wheel_IRQ_Delegate_GetRightCounter 2
-- Called Wheel_IRQ_Delegate_GetRightCounter 3
-- Called Wheel_IRQ_Delegate_GetLeftCounter 3
-- Called Wheel_IRQ_Delegate_GetLeftCounter 4
-- Called Wheel_IRQ_Delegate_GetRightCounter 4
-- Called Wheel_IRQ_Delegate_GetLeftCounter 5
-- Called Wheel_IRQ_Delegate_GetRightCounter 5
-- Called Wheel_IRQ_Delegate_GetRightCounter 6
-- Called Wheel_IRQ_Delegate_GetLeftCounter 6
-- Called Wheel_IRQ_Delegate_GetLeftCounter 7
-- Called Wheel_IRQ_Delegate_GetRightCounter 7
-- Called Wheel_IRQ_Delegate_GetLeftCounter 8
-- Called Wheel_IRQ_Delegate_GetRightCounter 8
-- Called Wheel_IRQ_Delegate_GetRightCounter 9
-- Called Wheel_IRQ_Delegate_GetLeftCounter 9
-- Called Wheel_IRQ_Delegate_GetLeftCounter 10
-- Called Wheel_IRQ_Delegate_GetRightCounter 10
-- Called Wheel_IRQ_Delegate_GetLeftCounter 11
-- Called Wheel_IRQ_Delegate_GetRightCounter 11
-- Called Wheel_IRQ_Delegate_GetLeftCounter 0
-- Called Wheel_IRQ_Delegate_GetRightCounter 0
 - ''

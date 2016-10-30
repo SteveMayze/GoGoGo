@@ -205,11 +205,17 @@ void test_whenDoCommandIsForward_thingsShouldEnd(){
    Wheel_IRQ_SetLeftLLimit_fake.custom_fake = Wheel_IRQ_Delegate_SetLeftLimit;
    Wheel_IRQ_SetRightLimit_fake.custom_fake = Wheel_IRQ_Delegate_SetRightLimit;
 
+   uint16_t count = 5;
 
-   Wheel_DoCommand(FORWARD, 100, 10);
-   // After stopping, the counter is reset to 1.. this getter
-   // will increment this to simulate the IRQ handler.
-   TEST_ASSERT_TRUE( 1 == Wheel_IRQ_Delegate_GetLeftCounter());
-   TEST_ASSERT_TRUE( 1 == Wheel_IRQ_Delegate_GetRightCounter());
+   Wheel_DoCommand(FORWARD, 100, count);
+   // After stopping, the counter is reset to 0
+   TEST_ASSERT_EQUAL_INT(0, delegate_left_counter);
+   TEST_ASSERT_EQUAL_INT(0,  delegate_right_counter);
+
+  //  TEST_ASSERT_EQUAL_INT(count + 1, Wheel_IRQ_GetLeftCounter_fake.call_count);
+  //  TEST_ASSERT_EQUAL_INT(count + 1, Wheel_IRQ_GetRightCounter_fake.call_count);
+
+   TEST_ASSERT_EQUAL_INT(count + 1, Wheel_IRQ_GetStopLeft_fake.call_count);
+   TEST_ASSERT_EQUAL_INT(count + 1, Wheel_IRQ_GetStopRight_fake.call_count);
 
 }
