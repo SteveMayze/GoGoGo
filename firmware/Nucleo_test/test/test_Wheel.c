@@ -10,6 +10,26 @@
 #include "Wheel_IRQ_Delegate.h"
 
 
+void setUp(void) {
+
+  printf("setUp: preparing...");
+  Wheel_IRQ_Delegate_Reset();
+
+  Wheel_IRQ_GetLeftCounter_fake.custom_fake = Wheel_IRQ_Delegate_GetLeftCounter;
+  Wheel_IRQ_GetRightCounter_fake.custom_fake = Wheel_IRQ_Delegate_GetRightCounter;
+  Wheel_IRQ_GetStopLeft_fake.custom_fake = Wheel_IRQ_Delegate_GetStopLeft;
+  Wheel_IRQ_GetStopRight_fake.custom_fake = Wheel_IRQ_Delegate_GetStopRight;
+  Wheel_IRQ_GetLeftLimit_fake.custom_fake = Wheel_IRQ_Delegate_GetLeftLimit;
+  Wheel_IRQ_GetRightLimit_fake.custom_fake = Wheel_IRQ_Delegate_GetRightLimit;
+
+  Wheel_IRQ_SetLeftCounter_fake.custom_fake = Wheel_IRQ_Delegate_SetLeftCounter;
+  Wheel_IRQ_SetRightCounter_fake.custom_fake = Wheel_IRQ_Delegate_SetRightCounter;
+  Wheel_IRQ_SetStopLeft_fake.custom_fake = Wheel_IRQ_Delegate_SetStopLeft;
+  Wheel_IRQ_SetStopRight_fake.custom_fake = Wheel_IRQ_Delegate_SetStopRight;
+  Wheel_IRQ_SetLeftLLimit_fake.custom_fake = Wheel_IRQ_Delegate_SetLeftLimit;
+  Wheel_IRQ_SetRightLimit_fake.custom_fake = Wheel_IRQ_Delegate_SetRightLimit;
+  FFF_RESET_HISTORY();
+}
 void test_whenWheelsAreInitialised_thenWeSetTheCorrectPins() {
 
    Wheel_Initialise();
@@ -187,33 +207,14 @@ void test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheRightWheel() {
 
 
 
-void test_whenDoCommandIsForward_thingsShouldEnd(){
+void test_whenDoCommandIsForward_thenExitAfterLastCount(){
 
-   Wheel_IRQ_Delegate_Reset();
-
-   Wheel_IRQ_GetLeftCounter_fake.custom_fake = Wheel_IRQ_Delegate_GetLeftCounter;
-   Wheel_IRQ_GetRightCounter_fake.custom_fake = Wheel_IRQ_Delegate_GetRightCounter;
-   Wheel_IRQ_GetStopLeft_fake.custom_fake = Wheel_IRQ_Delegate_GetStopLeft;
-   Wheel_IRQ_GetStopRight_fake.custom_fake = Wheel_IRQ_Delegate_GetStopRight;
-   Wheel_IRQ_GetLeftLimit_fake.custom_fake = Wheel_IRQ_Delegate_GetLeftLimit;
-   Wheel_IRQ_GetRightLimit_fake.custom_fake = Wheel_IRQ_Delegate_GetRightLimit;
-
-   Wheel_IRQ_SetLeftCounter_fake.custom_fake = Wheel_IRQ_Delegate_SetLeftCounter;
-   Wheel_IRQ_SetRightCounter_fake.custom_fake = Wheel_IRQ_Delegate_SetRightCounter;
-   Wheel_IRQ_SetStopLeft_fake.custom_fake = Wheel_IRQ_Delegate_SetStopLeft;
-   Wheel_IRQ_SetStopRight_fake.custom_fake = Wheel_IRQ_Delegate_SetStopRight;
-   Wheel_IRQ_SetLeftLLimit_fake.custom_fake = Wheel_IRQ_Delegate_SetLeftLimit;
-   Wheel_IRQ_SetRightLimit_fake.custom_fake = Wheel_IRQ_Delegate_SetRightLimit;
-
-   uint16_t count = 5;
+   uint16_t count = 15;
 
    Wheel_DoCommand(FORWARD, 100, count);
    // After stopping, the counter is reset to 0
    TEST_ASSERT_EQUAL_INT(0, delegate_left_counter);
    TEST_ASSERT_EQUAL_INT(0,  delegate_right_counter);
-
-  //  TEST_ASSERT_EQUAL_INT(count + 1, Wheel_IRQ_GetLeftCounter_fake.call_count);
-  //  TEST_ASSERT_EQUAL_INT(count + 1, Wheel_IRQ_GetRightCounter_fake.call_count);
 
    TEST_ASSERT_EQUAL_INT(count + 1, Wheel_IRQ_GetStopLeft_fake.call_count);
    TEST_ASSERT_EQUAL_INT(count + 1, Wheel_IRQ_GetStopRight_fake.call_count);

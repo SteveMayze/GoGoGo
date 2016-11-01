@@ -16,8 +16,9 @@ static volatile uint32_t right_limit = 0;
 void EXTI0_1_IRQHandler(void) {
 	if ((EXTI->PR & EXTI_PR_PR0) != (uint32_t) 0) {
 		EXTI->PR = EXTI_PR_PR0;
+		// Wheel_IRQ_SetLeftCounter(Wheel_IRQ_GetLeftCounter() + 1);
 		left_counter++;
-		stop_left = left_counter > left_limit;
+		stop_left = left_counter >= left_limit;
 		NVIC_ClearPendingIRQ(EXTI0_1_IRQn);
 	}
 }
@@ -29,8 +30,9 @@ void EXTI0_1_IRQHandler(void) {
 void EXTI4_15_IRQHandler(void) {
 	if ((EXTI->PR & EXTI_PR_PR4) != (uint32_t) 0) {
 		EXTI->PR = EXTI_PR_PR4;
+		// Wheel_IRQ_SetRightCounter(Wheel_IRQ_GetRightCounter() +1);
 		right_counter++;
-		stop_right = right_counter > right_limit;
+		stop_right = right_counter >= right_limit;
 		NVIC_ClearPendingIRQ(EXTI4_15_IRQn);
 	}
 }

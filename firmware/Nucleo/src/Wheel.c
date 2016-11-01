@@ -8,11 +8,6 @@ bool right_running = false;
 uint16_t compensation = 0;
 
 
-bool Wheel_IsRunning(void){
-	return !left_running && !right_running;
-}
-
-
 void Wheel_Initialise(void) {
 	GPIOConfig_OutputPin(GPIOB, LEFT_STBY); // Left Standby
 	GPIOConfig_OutputPin(GPIOB, LEFT_INP1); // Left Inp1
@@ -97,11 +92,24 @@ void Wheel_StopRightWheel(void) {
 	right_running = false;
 }
 
+bool Wheel_isRunning() {
+	bool running = left_running || right_running;
+	if (running) {
+		if (Wheel_IRQ_GetStopLeft() && left_running) {
+			Wheel_StopLeftWheel();
+		}
+
+		if (Wheel_IRQ_GetStopRight() && right_running) {
+			Wheel_StopRightWheel();
+		}
+	}
+	return running;
+}
+
 void Wheel_DoCommand(uint16_t command, uint16_t speed, uint32_t distance) {
-	bool running = true;
 	bool newcmd = true;
 	compensation = speed;
-	while (running) {
+	while (Wheel_isRunning()) {
 		if (newcmd) {
 			newcmd = false;
 			switch (command) {
@@ -132,36 +140,6 @@ void Wheel_DoCommand(uint16_t command, uint16_t speed, uint32_t distance) {
 				break;
 			default:
 				break;
-			}
-		}
-		running = left_running || right_running;
-		if (running) {
-
-			if (command == FORWARD || command == REVERSE) {
-				if (Wheel_IRQ_GetRightCounter() > Wheel_IRQ_GetLeftCounter()) {
-					// Right wheel is faster
-					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, compensation - 1);
-					GPIO_AnalogWrite(GPIOC, LEFT_PWM, compensation + 1);
-
-				}
-				if (Wheel_IRQ_GetLeftCounter() > Wheel_IRQ_GetRightCounter()) {
-					// Right wheel is slower
-					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, compensation + 1);
-					GPIO_AnalogWrite(GPIOC, LEFT_PWM, compensation - 1);
-				}
-				if (Wheel_IRQ_GetLeftCounter() == Wheel_IRQ_GetRightCounter()) {
-					compensation = speed;
-					GPIO_AnalogWrite(GPIOC, RIGHT_PWM, compensation);
-					GPIO_AnalogWrite(GPIOC, LEFT_PWM, compensation);
-				}
-			}
-
-			if (Wheel_IRQ_GetStopLeft() && left_running) {
-				Wheel_StopLeftWheel();
-			}
-
-			if (Wheel_IRQ_GetStopRight() && right_running) {
-				Wheel_StopRightWheel();
 			}
 		}
 	}

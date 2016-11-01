@@ -51,7 +51,7 @@ extern void test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheLeftWheel();
 extern void test_whenWheelsGoBackward_thenWeSetTheCorrectPinsForRightWheel();
 extern void test_whenWheelsGoBackward_thenWeSetTheEnablePinForRightWheel();
 extern void test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheRightWheel();
-extern void test_whenDoCommandIsForward_thingsShouldEnd();
+extern void test_whenDoCommandIsForward_thenExitAfterLastCount();
 
 
 /*=======Mock Management=====*/
@@ -93,20 +93,20 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_Wheel.c");
-  RUN_TEST(test_whenWheelsAreInitialised_thenWeSetTheCorrectPins, 13);
-  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheCorrectPinsForLeftWheel, 22);
-  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheEnablePinForLeftWheel, 40);
-  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheVelocityOfTheLeftWheel, 49);
-  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheCorrectPinsForRightWheel, 63);
-  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheEnablePinForRightWheel, 82);
-  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheVelocityOfTheRightWheel, 93);
-  RUN_TEST(test_whenWheelsGoBackward_thenSetTheCorrectDirectionPinsForLeftWheel, 107);
-  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheEnablePinForLeftWheel, 124);
-  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheLeftWheel, 133);
-  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheCorrectPinsForRightWheel, 147);
-  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheEnablePinForRightWheel, 166);
-  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheRightWheel, 177);
-  RUN_TEST(test_whenDoCommandIsForward_thingsShouldEnd, 190);
+  RUN_TEST(test_whenWheelsAreInitialised_thenWeSetTheCorrectPins, 33);
+  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheCorrectPinsForLeftWheel, 42);
+  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheEnablePinForLeftWheel, 60);
+  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheVelocityOfTheLeftWheel, 69);
+  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheCorrectPinsForRightWheel, 83);
+  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheEnablePinForRightWheel, 102);
+  RUN_TEST(test_whenWheelsGoForward_thenWeSetTheVelocityOfTheRightWheel, 113);
+  RUN_TEST(test_whenWheelsGoBackward_thenSetTheCorrectDirectionPinsForLeftWheel, 127);
+  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheEnablePinForLeftWheel, 144);
+  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheLeftWheel, 153);
+  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheCorrectPinsForRightWheel, 167);
+  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheEnablePinForRightWheel, 186);
+  RUN_TEST(test_whenWheelsGoBackward_thenWeSetTheVelocityOfTheRightWheel, 197);
+  RUN_TEST(test_whenDoCommandIsForward_thenExitAfterLastCount, 210);
 
   CMock_Guts_MemFreeFinal();
   return (UnityEnd());

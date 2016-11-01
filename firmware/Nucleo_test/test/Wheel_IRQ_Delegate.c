@@ -49,14 +49,16 @@ void Wheel_IRQ_Delegate_SetStopRight(bool flag) {
 }
 
 bool Wheel_IRQ_Delegate_GetStopLeft(void) {
+  printf("delegate_left_counter=%d, delegate_left_limit=%d\n",
+          (int)delegate_left_counter, (int)delegate_left_limit);
   delegate_left_counter++;
-  delegate_stop_left = delegate_left_counter > delegate_left_limit;
+  delegate_stop_left = delegate_left_counter >= delegate_left_limit;
   return delegate_stop_left;
 }
 
 bool Wheel_IRQ_Delegate_GetStopRight(void){
   delegate_right_counter++;
-  delegate_stop_right = delegate_right_counter > delegate_right_limit;
+  delegate_stop_right = delegate_right_counter >= delegate_right_limit;
   return delegate_stop_right;
 }
 
